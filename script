@@ -1,5 +1,4 @@
 //palindrome
-
 echo "enter a number:"
 read n
 rev=0
@@ -16,3 +15,130 @@ if [ $temp -eq $rev ]; then
 else
    echo "not palindrome"
 fi
+
+
+//sort array 
+echo "enter limit:"
+read limit
+for((i=0;i<limit;i++))
+do
+  echo "enter element $((i+1))"
+  read arr[i]
+done
+for((i=0;i<limit;i++))
+do
+  for((j=i+1;j<limit;j++))
+  do
+  if((arr[i]>arr[j]))
+  then
+    temp=${arr[i]}
+    arr[i]=${arr[j]}
+    arr[j]=$temp
+  fi
+  done
+done
+echo "sorted array is:"
+for((i=0;i<limit;i++))
+do
+  echo "${arr[i]}"
+done
+length=${#arr[@]}
+echo "$length"
+
+
+//sum of digits
+echo "enter a number:"
+read n
+if [ $n -lt 0 ]
+then
+    sum=$n
+else
+sum=0
+while [ $n -ne 0 ] 
+do
+   digit=$(($n%10))
+   sum=$(($sum+$digit))
+   n=$(($n/10))
+done
+n=$sum
+fi
+echo "$sum"
+
+
+//strong
+echo "enter a number"
+read n
+temp=$n
+sum=0
+while [ $n -gt 0 ]
+do
+  digit=$(($n%10))
+  fact=1
+  for((i=1;i<=$digit;i++))
+  do
+    fact=$(($fact*i))
+  done
+  sum=$(($sum+$fact))
+  n=$(($n/10))
+done
+if [ $temp -eq $sum ]
+then
+   echo "strong"
+else
+   echo "not so strong"
+fi
+
+
+//count
+echo "enter filename:"
+read file
+echo "enter word to count:"
+read word 
+count=$(grep -o -w "$word" "$file" | wc -l)
+echo "the word $word appears in $count times"
+
+
+//factorial
+echo "enter a number:"
+read num
+fact=1
+for((i=1;i<=num;i++))
+do
+  fact=$(($fact*$i))
+done
+echo "$fact"
+
+
+//remove duplicates
+echo "enter the file"
+read file
+echo "enter the output file"
+read uniq
+sort "$file" | uniq > "$uniq"
+echo "duplicates removed"
+
+
+//upper to lower file
+for shell in *; 
+do
+  if [ -f "$shell" ]; then
+    new_name=$(echo "$shell" | tr '[:upper:]' '[:lower:]')
+    if [ "$file" != "$new_name" ]; then
+      mv "$shell" "$new_name"
+      echo "renamed $shell to $new_name"
+    fi
+  fi
+done
+echo "All filenames in the directory converted to lowercase."
+
+
+//max element in array
+array=(88 21 99 65 1)
+max=${array[0]}
+for num in "${array[@]}"; 
+do
+   if((num>max)); then
+     max=$num
+   fi
+done
+echo "maximum element is $max"
