@@ -284,11 +284,20 @@ fibo()
 	echo  $(( $(fibo $((n-1))) + $(fibo $((n-2))) ))
   fi
 }
-
 echo "enter number of terms:"
 read terms
-
 for (( i=0;i<terms;i++ )); do
    echo "$(fibo $i)"
 done
 
+//odd or even
+echo "enter a number"
+read num
+if [ $((num % 2)) -eq 0 ] 
+then
+   echo "even number"
+else
+   echo "odd number"
+fi 
+
+//
