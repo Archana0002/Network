@@ -1,0 +1,45 @@
+//file exists
+echo "enter file name"
+read file
+if [ -w $file ]
+then
+   echo "file exists"
+else
+   echo "file does not exists"
+fi
+
+//dir exists
+echo "enter directory name"
+read dir
+if [ ! -d $dir ]
+then
+  echo "directory does not exists"
+  exit 1
+fi
+echo "directory $dir existes"
+
+//copy
+echo "enter file1"
+read f1
+echo "enter file2"
+read f2
+if [ -e $file1 ]
+then
+   cp $f1 $f2
+   file_loc=$(readlink -f $f2)
+   echo "a copy is now located"
+else
+   echo "no such file"
+fi
+
+//create a filr
+echo "enter file name"
+read name
+echo "enter text to write"
+read text
+echo "$text" > "$name"
+echo "........"
+echo "file created"
+
+
+//
