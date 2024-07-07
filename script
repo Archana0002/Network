@@ -274,21 +274,24 @@ else
 fi
 
 //fibonacci
-echo "fibonacci series"
-fibo()
-{
-  local n=$1
-  if [ $n -le 1 ]; then
-	echo $n
-  else
-	echo  $(( $(fibo $((n-1))) + $(fibo $((n-2))) ))
-  fi
-}
-echo "enter number of terms:"
+echo "enter number of terms"
 read terms
-for (( i=0;i<terms;i++ )); do
-   echo "$(fibo $i)"
+
+if [ $terms -le 0 ]; then
+  echo "please enter a positive integer"
+  exit 1
+fi
+a=0
+b=1
+echo "fibonacci series:"
+for((i=0;i<terms;i++)); do
+
+  echo -n "$a "
+  next=$((a+b))
+  a=$b
+  b=$next
 done
+echo
 
 //odd or even
 echo "enter a number"
