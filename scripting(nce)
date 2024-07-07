@@ -42,4 +42,30 @@ echo "........"
 echo "file created"
 
 
-//
+//string length
+echo "enter the string"
+read str
+length=${#str}
+echo "$length"
+
+//string convert case
+echo "enter string"
+read str
+lower=$(echo "$str" | tr '[:upper:]' '[:lower:]')
+echo "$lower"
+
+
+//string compare
+str1="hello"
+str2="world"
+if [ "$str1" -eq "$str2" ]; then
+echo "equal"
+else
+echo "not equal"
+fi
+
+//remove white space from string
+echo "enter line"
+read line
+str=${line// /}
+echo "$str"
