@@ -88,6 +88,24 @@ else
    echo "not so strong"
 fi
 
+//armstrong
+echo "enter a number:"
+read num
+sum=0
+temp=$num
+while [ $num -gt 0 ];
+do
+  digit=$(($num%10))
+  sum=$(($sum+$digit*$digit*$digit))
+  num=$(($num/10))
+done
+if [ $temp -eq $sum ]; then
+  echo "armstrong number:"
+else
+  echo "not armstrong"
+fi
+
+
 
 //count
 echo "enter filename:"
@@ -303,4 +321,10 @@ else
    echo "odd number"
 fi 
 
-//
+//reverse of a number
+echo "enter num"
+read num
+rev=$(echo "$num" | rev)
+echo $rev
+
+
