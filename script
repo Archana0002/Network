@@ -281,6 +281,7 @@ dir=$(pwd)
 file_count=$(ls -l $dir | wc -l)
 echo "$file_count"
 
+
 //prime
 echo "enter a number:"
 read n
@@ -338,4 +339,211 @@ read num
 rev=$(echo "$num" | rev)
 echo $rev
 
+
+//ascending oredr
+echo "enter a number:"
+read m
+echo "enter ending number:"
+read n
+echo "ascending order:"
+for((i=m;i<=n;i++))
+do
+   echo "$i"
+done
+
+//file permission
+echo "files which have read,write and execute permissions"
+for file in * ; do
+if [ -f "$file" ]; then
+if [ -r "$file" ] && [ -w "$file" ] && [ -x "$file" ]; then
+ls -l "$file"
+fi
+fi
+done
+
+//no: of occurence of a digit
+echo "enter a number:"
+read n
+rem=0
+c=0
+echo "enter number to check the ocuurence"
+read o
+while [ $n -gt 0 ]
+do
+  rem=$(($n%10))
+  if [ $rem -eq $o ]; then
+    ((c=c+1))
+  fi
+  n=$((n/10))
+done
+echo "number of times the digit occurs is: $c"
+
+
+//alternate number
+echo "enter a 7 digit number:"
+read num
+n=1
+while [ $n -le 7 ] 
+do
+  a=$(echo $num|cut -c $n)
+  echo $a
+  n=$((n+2))
+done
+
+//file or directory
+echo "enter file name:"
+read file
+if [ -f $file ] 
+then
+  echo "$file is a file"
+  elif [ -d $file ]
+  then
+    echo "$file is a directory"
+  else
+    echo "something else"
+fi
+
+ //in between lines printing
+echo "enter file name"
+read file
+echo "enter starting line number:"
+read first
+echo "enter ending line:"
+read end
+echo "the lines are:"
+sed -n $first,$end\p $file
+
+
+//line removing
+echo "enter filename"
+read file
+echo "enter word to delete that line:"
+read word
+echo "orginal file"
+cat $file
+grep -v -i $word $file > temp
+mv temp $file
+echo ""
+echo "file after removing $word"
+cat $file
+
+//salary 
+echo "enter the salary"
+read sal
+if [ "$sal" -le 1500 ]; 
+then
+  hra=$(( 10 * sal / 100 ))
+  da=$(( 90 * sal / 100 ))
+else
+  hra=500
+  da=$(( 98 * sal / 100 ))
+fi
+echo "salary is $sal"
+echo "hra is $hra"
+echo "da is $da"
+
+//grade
+echo "enter mark1"
+read m1
+echo "enter mark2"
+read m2
+echo "enter mark3"
+read m3
+echo "enter mark4"
+read m4
+echo "enter mark5"
+read m5
+tot=$((m1+m2+m3+m4+m5))
+echo "total marks is: $tot"
+if [ $tot > 400 ]; 
+then 
+  echo "A grade"
+elif [ $tot > 301 ] && [ $tot < 400 ];
+then
+  echo "B grade"
+elif [ $tot > 201 ] && [ $tot < 300 ];
+then
+  echo "C grade"
+else
+  echo "D grade"
+fi
+
+
+//bank account
+balance=7000
+echo "welcome to bank account update"
+echo "1.Deposit"
+echo "2.Withdraw"
+echo "3.Exit"
+while true
+do
+  echo "enter your choice"
+  read ch
+  case $ch in 
+  1)echo "enter amount to deposit"
+    read deposit
+    balance=$(($balance+$deposit))
+    echo "balance amount is: $balance";;
+  2)echo "enter amount to withdraw"
+    read withdraw
+    if [ $withdraw -gt $balance ];
+    then
+	echo "withdraw not posiible"
+    else
+        balance=$(($balance-$withdraw))
+        echo "new balance is: $balance"
+    fi;;
+  3)echo "thank you for using bank account"
+    exit 0;;
+  *)echo "invalid choice";;
+  esac
+done
+
+//calculator
+echo "1.addition"
+echo "2.subtraction"
+echo "3.multiplication"
+echo "4.division"
+echo "5.modulo"
+echo "6.exit"
+while true
+do 
+  echo "enter your choice:"
+  read ch
+  case $ch in
+  1)echo "enter number1:"
+    read num1
+    echo "enter number2:"
+    read num2
+    add=$(($num1+$num2))
+    echo "sum is: $add";;
+  2)echo "enter number1:"
+    read num1
+    echo "enter number2:"
+    read num2
+    sub=$(($num1-$num2))
+    echo "subtraction is: $sub";;
+  3)echo "enter number1:"
+    read num1
+    echo "enter number2:"
+    read num2
+    mul=$(($num1*$num2))
+    echo "multiplication is: $mul";;
+  4)echo "enter number1:"
+    read num1
+    echo "enter number2:"
+    read num2
+    div=$(($num1/$num2))
+    echo "division is: $div";;
+  5)echo "enter number1:"
+    read num1
+    echo "enter number2:"
+    read num2
+    mod=$(($num1%$num2))
+    echo "modulus is: $mod";;
+  6)echo "exiting"
+    exit 0;;
+  *)echo "invalid choice";;
+  esac
+done
 
